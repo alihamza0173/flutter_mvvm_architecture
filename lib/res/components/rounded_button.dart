@@ -5,10 +5,12 @@ class RoundedButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
+    this.isLoading = false,
   });
 
   final String title;
   final VoidCallback onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,13 @@ class RoundedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      onPressed: onPressed,
-      child: Text(title),
+      onPressed: isLoading ? () {} : onPressed,
+      child: isLoading
+          ? const CircularProgressIndicator(
+              color: Colors.white,
+              strokeWidth: 5,
+            )
+          : Text(title),
     );
   }
 }

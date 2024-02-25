@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/res/components/rounded_button.dart';
 import 'package:flutter_mvvm_architecture/utils/utils.dart';
+import 'package:flutter_mvvm_architecture/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -31,7 +33,6 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -77,10 +78,20 @@ class _LoginViewState extends State<LoginView> {
                 );
               }),
           const SizedBox(height: 12),
-          RoundedButton(
-            title: 'Submit',
-            onPressed: () {},
-          ),
+          Builder(builder: (context) {
+            final _provider = context.watch<AuthViewModel>();
+            return RoundedButton(
+              title: 'Submit',
+              isLoading: _provider.isLoading,
+              onPressed: () {
+                Map data = {
+                  'email': _emailController.text,
+                  'password': _passwordController.text,
+                };
+                _provider.loginApi(context, data);
+              },
+            );
+          }),
         ],
       ),
     );

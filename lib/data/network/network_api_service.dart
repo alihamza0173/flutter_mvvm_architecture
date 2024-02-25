@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter_mvvm_architecture/data/app_exceptions.dart';
 import 'package:flutter_mvvm_architecture/data/network/base_api_service.dart';
@@ -12,19 +11,19 @@ class NetworkApiService implements BaseApiService {
     try {
       final response = await http.get(Uri.parse(url));
       jsonResponse = returnResponse(response);
-    } on SocketException {
+    } on http.ClientException {
       throw FetchDataException('No Internet Connection');
     }
     return jsonResponse;
   }
 
   @override
-  Future getPostApiResponse(String url) async {
+  Future getPostApiResponse(String url, dynamic data) async {
     dynamic jsonResponse;
     try {
-      final response = await http.post(Uri.parse(url), body: {});
+      final response = await http.post(Uri.parse(url), body: data);
       jsonResponse = returnResponse(response);
-    } on SocketException {
+    } on http.ClientException {
       throw FetchDataException('No Internet Connection');
     }
     return jsonResponse;
