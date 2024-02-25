@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  another_flushbar: ^1.12.30
   fluttertoast: ^8.2.4
   http: ^1.2.1  
   provider: ^6.1.1
