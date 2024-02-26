@@ -5,14 +5,14 @@ import 'package:flutter_mvvm_architecture/utils/utils.dart';
 import 'package:flutter_mvvm_architecture/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   // Email Field
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
@@ -37,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('SignUp'),
         centerTitle: true,
       ),
       body: Column(
@@ -83,21 +83,21 @@ class _LoginViewState extends State<LoginView> {
           Builder(builder: (context) {
             final provider = context.watch<AuthViewModel>();
             return RoundedButton(
-              title: 'Login',
+              title: 'Sign Up',
               isLoading: provider.isLoading,
               onPressed: () {
                 Map data = {
                   'email': _emailController.text,
                   'password': _passwordController.text,
                 };
-                provider.loginApi(context, data);
+                provider.registerApi(context, data);
               },
             );
           }),
           TextButton(
             onPressed: () =>
-                Navigator.pushReplacementNamed(context, RoutesName.signUp),
-            child: const Text('Don\'nt Have an Account? Sign Up'),
+                Navigator.pushReplacementNamed(context, RoutesName.login),
+            child: const Text('Already Have an Account? Sign In'),
           ),
         ],
       ),

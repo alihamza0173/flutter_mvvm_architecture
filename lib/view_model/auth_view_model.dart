@@ -36,4 +36,26 @@ class AuthViewModel extends ChangeNotifier {
       },
     );
   }
+
+  Future registerApi(BuildContext context, dynamic data) async {
+    setLoading(true);
+    _authRepo.loginApi(data).then(
+      (value) {
+        if (kDebugMode) {
+          print(value);
+        }
+        setLoading(false);
+        Utils.toastMessage('SignUp Successful');
+        Navigator.pushReplacementNamed(context, RoutesName.home);
+      },
+    ).onError(
+      (error, stackTrace) {
+        setLoading(false);
+        Utils.snackBar(
+          context,
+          error.toString(),
+        );
+      },
+    );
+  }
 }
