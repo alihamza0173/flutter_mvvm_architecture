@@ -28,7 +28,7 @@ class AuthViewModel extends ChangeNotifier {
         }
         setLoading(false);
         Utils.toastMessage(successMessage);
-        Navigator.pushReplacementNamed(context, RoutesName.home);
+        Navigator.pushReplacementNamed(context, RouteNames.home);
       },
     ).onError(
       (error, stackTrace) {

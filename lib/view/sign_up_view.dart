@@ -96,7 +96,7 @@ class _SignUpViewState extends State<SignUpView> {
           }),
           TextButton(
             onPressed: () =>
-                Navigator.pushReplacementNamed(context, RoutesName.login),
+                Navigator.pushReplacementNamed(context, RouteNames.login),
             child: const Text('Already Have an Account? Sign In'),
           ),
         ],
