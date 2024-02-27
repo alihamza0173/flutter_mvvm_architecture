@@ -30,13 +30,15 @@ class NetworkApiService implements BaseApiService {
   }
 
   dynamic returnResponse(http.Response response) {
+    final jsonResponse = jsonDecode(response.body);
+    final error = jsonResponse['error'];
     switch (response.statusCode) {
       case 200:
-        return jsonDecode(response.body);
+        return jsonResponse;
       case 400:
-        throw BadRequestException(response.body);
+        throw BadRequestException(error);
       case 404:
-        throw UnauthorisedException(response.body);
+        throw UnauthorisedException(error);
       default:
         throw FetchDataException(
             'Error Occured While Communication with server with status code ${response.statusCode}');
