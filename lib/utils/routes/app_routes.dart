@@ -3,10 +3,15 @@ import 'package:flutter_mvvm_architecture/utils/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/view/home_screen.dart';
 import 'package:flutter_mvvm_architecture/view/login_view.dart';
 import 'package:flutter_mvvm_architecture/view/sign_up_view.dart';
+import 'package:flutter_mvvm_architecture/view/splash_view.dart';
 
 class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteNames.splash:
+        return MaterialPageRoute(
+          builder: (context) => const SplashView(),
+        );
       case RouteNames.login:
         return MaterialPageRoute(
           builder: (context) => const LoginView(),

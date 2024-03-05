@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/repositry/auth_reposirty.dart';
 import 'package:flutter_mvvm_architecture/utils/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/utils/utils.dart';
+import 'package:flutter_mvvm_architecture/view_model/user_view_model.dart';
 
 class AuthViewModel extends ChangeNotifier {
   final _authRepo = AuthRepositry();
@@ -23,12 +24,15 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
     apiCall(data).then(
       (value) {
-        if (kDebugMode) {
-          print(value);
-        }
+        debugPrint(value.toString());
         setLoading(false);
         Utils.toastMessage(successMessage);
-        Navigator.pushReplacementNamed(context, RouteNames.home);
+        UserViewModel().saveUser(value);
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RouteNames.home,
+          (route) => false,
+        );
       },
     ).onError(
       (error, stackTrace) {

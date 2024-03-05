@@ -19,12 +19,9 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash Screen'),
-      ),
-      body: const Center(
-        child: Text('Splash Screen'),
+    return const Scaffold(
+      body: Center(
+        child: FlutterLogo(),
       ),
     );
   }
