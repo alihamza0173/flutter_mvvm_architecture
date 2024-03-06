@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 
 class NetworkApiService implements BaseApiService {
   @override
-  Future getGetApiResponse(String url) async {
-    dynamic jsonResponse;
+  Future<Map<String, dynamic>> getGetApiResponse(String url) async {
+    Map<String, dynamic> jsonResponse;
     try {
       final response = await http.get(Uri.parse(url));
       jsonResponse = returnResponse(response);
@@ -18,8 +18,9 @@ class NetworkApiService implements BaseApiService {
   }
 
   @override
-  Future getPostApiResponse(String url, dynamic data) async {
-    dynamic jsonResponse;
+  Future<Map<String, dynamic>> getPostApiResponse(
+      String url, dynamic data) async {
+    Map<String, dynamic> jsonResponse;
     try {
       final response = await http.post(Uri.parse(url), body: data);
       jsonResponse = returnResponse(response);
@@ -29,7 +30,7 @@ class NetworkApiService implements BaseApiService {
     return jsonResponse;
   }
 
-  dynamic returnResponse(http.Response response) {
+  Map<String, dynamic> returnResponse(http.Response response) {
     final jsonResponse = jsonDecode(response.body);
     final error = jsonResponse['error'];
     switch (response.statusCode) {

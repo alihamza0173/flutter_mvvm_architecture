@@ -1,6 +1,6 @@
 import 'package:flutter_mvvm_architecture/data/response/status.dart';
 
-class ApiResponse {
+class ApiResponse<T> {
   Status? status;
   Object? data;
   String? message;
@@ -9,9 +9,9 @@ class ApiResponse {
 
   ApiResponse.loading() : status = Status.loading;
 
-  ApiResponse.completed() : status = Status.loading;
+  ApiResponse.completed(this.data) : status = Status.loading;
 
-  ApiResponse.error() : status = Status.error;
+  ApiResponse.error(this.message) : status = Status.error;
 
   @override
   String toString() {

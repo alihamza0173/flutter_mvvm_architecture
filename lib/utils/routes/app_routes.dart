@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/utils/routes/routes_name.dart';
-import 'package:flutter_mvvm_architecture/view/home_screen.dart';
+import 'package:flutter_mvvm_architecture/view/home_view.dart';
 import 'package:flutter_mvvm_architecture/view/login_view.dart';
 import 'package:flutter_mvvm_architecture/view/sign_up_view.dart';
 import 'package:flutter_mvvm_architecture/view/splash_view.dart';
@@ -22,7 +22,7 @@ class AppRoutes {
         );
       case RouteNames.home:
         return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const HomeView(),
         );
       default:
         return MaterialPageRoute(
