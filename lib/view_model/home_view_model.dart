@@ -5,10 +5,10 @@ import 'package:flutter_mvvm_architecture/repositry/home_repositry.dart';
 
 class HomeViewModel with ChangeNotifier {
   final _homeRepo = HomeRepositry();
+  ApiResponse<MoviesList?> _moviesList = ApiResponse.loading();
+  ApiResponse<MoviesList?> get moviesList => _moviesList;
 
-  ApiResponse<MoviesModel> _moviesList = ApiResponse.loading();
-
-  void _setMoviesList(ApiResponse<MoviesModel> response) {
+  void _setMoviesList(ApiResponse<MoviesList> response) {
     _moviesList = response;
     notifyListeners();
   }

@@ -6,10 +6,10 @@ import 'package:flutter_mvvm_architecture/res/app_urls.dart';
 class HomeRepositry {
   final BaseApiService _apiService = NetworkApiService();
 
-  Future<MoviesModel> fetchMoviesList() async {
+  Future<MoviesList> fetchMoviesList() async {
     try {
       final res = await _apiService.getGetApiResponse(AppUrl.moviesListUrl);
-      return MoviesModel.fromJson(res);
+      return MoviesList.fromJson(res);
     } catch (e) {
       rethrow;
     }

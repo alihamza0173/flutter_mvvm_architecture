@@ -86,6 +86,8 @@ class _LoginViewState extends State<LoginView> {
               title: 'Login',
               isLoading: provider.isLoading,
               onPressed: () {
+                // eve.holt@reqres.in
+                // cityslicka
                 Map data = {
                   'email': _emailController.text,
                   'password': _passwordController.text,

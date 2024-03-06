@@ -1,9 +1,21 @@
-class MoviesModel {
+class MoviesList {
+  List<Movies>? movies;
+
+  MoviesList(this.movies);
+
+  factory MoviesList.fromJson(Map<String, dynamic> json) {
+    return MoviesList(List<Movies>.from(
+      json['movies'].map((movie) => Movies.fromJson(movie)),
+    ));
+  }
+}
+
+class Movies {
   String? id;
   String? title;
   String? year;
-  List<String>? genres;
-  List<int>? ratings;
+  List<dynamic>? genres;
+  List<dynamic>? ratings;
   String? poster;
   dynamic contentRating;
   String? duration;
@@ -11,11 +23,11 @@ class MoviesModel {
   dynamic averageRating;
   String? originalTitle;
   String? storyline;
-  List<String>? actors;
-  String? imdbRating;
+  List<dynamic>? actors;
+  dynamic imdbRating;
   String? posterurl;
 
-  MoviesModel(
+  Movies(
       {this.id,
       this.title,
       this.year,
@@ -32,12 +44,12 @@ class MoviesModel {
       this.imdbRating,
       this.posterurl});
 
-  MoviesModel.fromJson(Map<String, dynamic> json) {
+  Movies.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     year = json['year'];
-    genres = json['genres'].cast<String>();
-    ratings = json['ratings'].cast<int>();
+    genres = json['genres'];
+    ratings = json['ratings'];
     poster = json['poster'];
     contentRating = json['contentRating'];
     duration = json['duration'];
@@ -45,7 +57,7 @@ class MoviesModel {
     averageRating = json['averageRating'];
     originalTitle = json['originalTitle'];
     storyline = json['storyline'];
-    actors = json['actors'].cast<String>();
+    actors = json['actors'];
     imdbRating = json['imdbRating'];
     posterurl = json['posterurl'];
   }
