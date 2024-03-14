@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_architecture/utils/routes/routes_name.dart';
+import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/view/home_view.dart';
 import 'package:flutter_mvvm_architecture/view/login_view.dart';
 import 'package:flutter_mvvm_architecture/view/sign_up_view.dart';

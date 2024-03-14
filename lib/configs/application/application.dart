@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_architecture/utils/routes/app_routes.dart';
-import 'package:flutter_mvvm_architecture/utils/routes/routes_name.dart';
+import 'package:flutter_mvvm_architecture/configs/routes/app_routes.dart';
+import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 
 class Applicatoin extends StatelessWidget {
   const Applicatoin({super.key});
