@@ -6,7 +6,7 @@ import 'package:flutter_mvvm_architecture/view_model/services/session_manager/se
 class SplashServices {
   void checkAuthentication(BuildContext context) async {
     SessionController().getUserFromPreference().then((value) async {
-      if (SessionController().isLogin!) {
+      if (SessionController().isLogin) {
         Timer(
           const Duration(seconds: 2),
           () => Navigator.pushNamedAndRemoveUntil(

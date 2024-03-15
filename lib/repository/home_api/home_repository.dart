@@ -3,7 +3,7 @@ import 'package:flutter_mvvm_architecture/data/network/base_api_service.dart';
 import 'package:flutter_mvvm_architecture/data/network/network_api_service.dart';
 import 'package:flutter_mvvm_architecture/model/movies_list/movies_model.dart';
 
-class HomeRepositry {
+class HomeRepository {
   final BaseApiService _apiService = NetworkApiService();
 
   Future<MoviesList> fetchMoviesList() async {

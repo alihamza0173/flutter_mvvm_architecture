@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/configs/utils.dart';
-import 'package:flutter_mvvm_architecture/repositry/auth_api/auth_reposirty.dart';
+import 'package:flutter_mvvm_architecture/repository/auth_api/auth_repository.dart';
 import 'package:flutter_mvvm_architecture/view_model/services/session_manager/session_controller.dart';
 
 class AuthViewModel extends ChangeNotifier {
@@ -27,7 +27,7 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
         Utils.toastMessage(successMessage);
         SessionController().saveUserInPreference(data);
-
+        SessionController().getUserFromPreference();
         Navigator.pushNamedAndRemoveUntil(
           context,
           RouteNames.home,
@@ -37,10 +37,7 @@ class AuthViewModel extends ChangeNotifier {
     ).onError(
       (error, stackTrace) {
         setLoading(false);
-        Utils.snackBar(
-          context,
-          error.toString(),
-        );
+        Utils.snackBar(context, error.toString());
       },
     );
   }

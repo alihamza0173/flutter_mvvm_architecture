@@ -6,16 +6,14 @@ import '../storage/local_storage.dart';
 //singleton class
 class SessionController {
   LocalStorage sharedPreferenceClass = LocalStorage();
-  static final SessionController _session = SessionController._internel();
+  static final SessionController _session = SessionController._internal();
 
-  bool? isLogin;
+  late bool isLogin;
   UserModel user = UserModel();
 
-  factory SessionController() {
-    return _session;
-  }
+  factory SessionController() => _session;
 
-  SessionController._internel() {
+  SessionController._internal() {
     // here we can initialize the values
     isLogin = false;
   }
