@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/data/response/status.dart';
-import 'package:flutter_mvvm_architecture/view_model/home_view_model.dart';
-import 'package:flutter_mvvm_architecture/view_model/user_view_model.dart';
+import 'package:flutter_mvvm_architecture/view_model/home/home_view_model.dart';
+import 'package:flutter_mvvm_architecture/view_model/services/storage/local_storage.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -24,7 +25,12 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => context.read<UserViewModel>().logout(context),
+            onPressed: () {
+              LocalStorage localStorage = LocalStorage();
+              localStorage.clearValue('token').then((value) {
+                Navigator.pushNamed(context, RouteNames.login);
+              });
+            },
             icon: const Icon(Icons.logout),
           ),
         ],

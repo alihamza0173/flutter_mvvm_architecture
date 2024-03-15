@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/configs/utils.dart';
-import 'package:flutter_mvvm_architecture/repositry/auth_reposirty.dart';
-import 'package:flutter_mvvm_architecture/view_model/user_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_mvvm_architecture/repositry/auth_api/auth_reposirty.dart';
+import 'package:flutter_mvvm_architecture/view_model/services/session_manager/session_controller.dart';
 
 class AuthViewModel extends ChangeNotifier {
-  final _authRepo = AuthRepositry();
+  final _authRepo = AuthRepository();
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
@@ -27,7 +26,8 @@ class AuthViewModel extends ChangeNotifier {
         debugPrint(user.toString());
         setLoading(false);
         Utils.toastMessage(successMessage);
-        context.read<UserViewModel>().saveUser(user);
+        SessionController().saveUserInPreference(data);
+
         Navigator.pushNamedAndRemoveUntil(
           context,
           RouteNames.home,

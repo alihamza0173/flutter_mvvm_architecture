@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_architecture/view_model/auth_view_model.dart';
-import 'package:flutter_mvvm_architecture/view_model/home_view_model.dart';
-import 'package:flutter_mvvm_architecture/view_model/user_view_model.dart';
+import 'package:flutter_mvvm_architecture/view_model/auth/auth_view_model.dart';
+import 'package:flutter_mvvm_architecture/view_model/home/home_view_model.dart';
 import 'package:provider/provider.dart';
 
 class Injector extends StatelessWidget {
@@ -13,7 +12,6 @@ class Injector extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthViewModel()),
-        ChangeNotifierProvider(create: (context) => UserViewModel()),
         ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ],
       child: child,

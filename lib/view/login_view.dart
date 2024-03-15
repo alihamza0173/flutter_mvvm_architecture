@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/configs/components/rounded_button.dart';
 import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 import 'package:flutter_mvvm_architecture/configs/utils.dart';
-import 'package:flutter_mvvm_architecture/view_model/auth_view_model.dart';
+import 'package:flutter_mvvm_architecture/view_model/auth/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {

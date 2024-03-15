@@ -3,7 +3,7 @@ import 'package:flutter_mvvm_architecture/data/network/base_api_service.dart';
 import 'package:flutter_mvvm_architecture/data/network/network_api_service.dart';
 import 'package:flutter_mvvm_architecture/model/user_model.dart';
 
-class AuthRepositry {
+class AuthRepository {
   final BaseApiService _apiService = NetworkApiService();
 
   Future<UserModel> loginApi(dynamic data) async {

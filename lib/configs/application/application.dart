@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/configs/routes/app_routes.dart';
 import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
 
-class Applicatoin extends StatelessWidget {
-  const Applicatoin({super.key});
+class Application extends StatelessWidget {
+  const Application({super.key});
 
   @override
   Widget build(BuildContext context) {

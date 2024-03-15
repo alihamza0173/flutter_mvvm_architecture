@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/data/response/api_response.dart';
-import 'package:flutter_mvvm_architecture/model/movies_model.dart';
-import 'package:flutter_mvvm_architecture/repositry/home_repositry.dart';
+import 'package:flutter_mvvm_architecture/model/movies_list/movies_model.dart';
+import 'package:flutter_mvvm_architecture/repositry/home_api/home_repositry.dart';
 
 class HomeViewModel with ChangeNotifier {
   final _homeRepo = HomeRepositry();
