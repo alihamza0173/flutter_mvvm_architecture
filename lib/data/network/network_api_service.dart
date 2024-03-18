@@ -12,7 +12,7 @@ class NetworkApiService implements BaseApiService {
       final response = await http.get(Uri.parse(url));
       jsonResponse = returnResponse(response);
     } on http.ClientException {
-      throw FetchDataException('No Internet Connection');
+      throw NoInternetException('No Internet Connection');
     }
     return jsonResponse;
   }
@@ -25,7 +25,7 @@ class NetworkApiService implements BaseApiService {
       final response = await http.post(Uri.parse(url), body: data);
       jsonResponse = returnResponse(response);
     } on http.ClientException {
-      throw FetchDataException('No Internet Connection');
+      throw NoInternetException('No Internet Connection');
     }
     return jsonResponse;
   }
@@ -39,7 +39,7 @@ class NetworkApiService implements BaseApiService {
       case 400:
         throw BadRequestException(error);
       case 404:
-        throw UnauthorisedException(error);
+        throw UnauthorizedException(error);
       default:
         throw FetchDataException(
             'Error Occured While Communication with server with status code ${response.statusCode}');
