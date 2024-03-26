@@ -42,7 +42,7 @@ class NetworkApiService implements BaseApiService {
         throw UnauthorizedException(error);
       default:
         throw FetchDataException(
-            'Error Occured While Communication with server with status code ${response.statusCode}');
+            'Error Occurred While Communication with server with status code ${response.statusCode}');
     }
   }
 }

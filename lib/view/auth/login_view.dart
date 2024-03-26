@@ -20,7 +20,7 @@ class _LoginViewState extends State<LoginView> {
   // Password Field
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _passwordFocusNode = FocusNode();
-  final ValueNotifier _obsecureText = ValueNotifier<bool>(true);
+  final ValueNotifier _obscureText = ValueNotifier<bool>(true);
 
   @override
   void dispose() {
@@ -28,7 +28,7 @@ class _LoginViewState extends State<LoginView> {
     _emailFocusNode.dispose();
     _passwordController.dispose();
     _passwordFocusNode.dispose();
-    _obsecureText.dispose();
+    _obscureText.dispose();
     super.dispose();
   }
 
@@ -59,19 +59,19 @@ class _LoginViewState extends State<LoginView> {
           ),
           // Password TextField
           ValueListenableBuilder(
-              valueListenable: _obsecureText,
+              valueListenable: _obscureText,
               builder: (context, value, child) {
                 return TextField(
                   controller: _passwordController,
-                  obscureText: _obsecureText.value,
+                  obscureText: _obscureText.value,
                   keyboardType: TextInputType.visiblePassword,
                   focusNode: _passwordFocusNode,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: InkWell(
-                      onTap: () => _obsecureText.value = !_obsecureText.value,
+                      onTap: () => _obscureText.value = !_obscureText.value,
                       child: Icon(
-                        _obsecureText.value
+                        _obscureText.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
                       ),
@@ -92,7 +92,12 @@ class _LoginViewState extends State<LoginView> {
                   'email': _emailController.text,
                   'password': _passwordController.text,
                 };
-                provider.loginApi(context, data);
+                provider.loginApi(data).then((value) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RouteNames.home, (route) => false);
+                }).onError((error, stackTrace) {
+                  Utils.snackBar(context, error.toString());
+                });
               },
             );
           }),

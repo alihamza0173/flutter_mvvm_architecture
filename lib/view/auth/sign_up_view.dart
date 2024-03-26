@@ -90,7 +90,12 @@ class _SignUpViewState extends State<SignUpView> {
                   'email': _emailController.text,
                   'password': _passwordController.text,
                 };
-                provider.registerApi(context, data);
+                provider.registerApi(data).then((value) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RouteNames.home, (route) => false);
+                }).onError((error, stackTrace) {
+                  Utils.snackBar(context, error.toString());
+                });
               },
             );
           }),

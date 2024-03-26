@@ -15,6 +15,7 @@ class Utils {
   }
 
   static snackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message)),
     );

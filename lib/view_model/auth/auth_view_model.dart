@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_architecture/configs/routes/routes_name.dart';
-import 'package:flutter_mvvm_architecture/configs/utils.dart';
+import 'package:flutter_mvvm_architecture/model/users_list/user_model.dart';
 import 'package:flutter_mvvm_architecture/repository/auth_api/auth_repository.dart';
 import 'package:flutter_mvvm_architecture/view_model/services/session_manager/session_controller.dart';
 
@@ -14,39 +13,29 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future _handleApiCall(
-    BuildContext context,
+  Future<UserModel> _handleApiCall(
     dynamic data,
     Future Function(dynamic) apiCall,
-    String successMessage,
   ) async {
     setLoading(true);
-    apiCall(data).then(
-      (user) {
-        debugPrint(user.toString());
-        setLoading(false);
-        Utils.toastMessage(successMessage);
-        SessionController().saveUserInPreference(data);
-        SessionController().getUserFromPreference();
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          RouteNames.home,
-          (route) => false,
-        );
-      },
-    ).onError(
-      (error, stackTrace) {
-        setLoading(false);
-        Utils.snackBar(context, error.toString());
-      },
-    );
+    try {
+      setLoading(true);
+      final response = await apiCall(data);
+      SessionController().saveUserInPreference(data);
+      SessionController().getUserFromPreference();
+      setLoading(false);
+      return response;
+    } catch (e) {
+      setLoading(false);
+      throw Exception(e);
+    }
   }
 
-  Future loginApi(BuildContext context, dynamic data) async {
-    _handleApiCall(context, data, _authRepo.loginApi, 'Login Successful');
+  Future loginApi(dynamic data) async {
+    await _handleApiCall(data, _authRepo.loginApi);
   }
 
-  Future registerApi(BuildContext context, dynamic data) async {
-    _handleApiCall(context, data, _authRepo.registerApi, 'SignUp Successful');
+  Future registerApi(dynamic data) async {
+    await _handleApiCall(data, _authRepo.registerApi);
   }
 }
