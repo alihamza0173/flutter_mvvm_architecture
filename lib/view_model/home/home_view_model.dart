@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/data/response/api_response.dart';
 import 'package:flutter_mvvm_architecture/model/movies_list/movies_model.dart';
-import 'package:flutter_mvvm_architecture/repository/home_api/home_repository.dart';
+import 'package:flutter_mvvm_architecture/repository/home_api/home_services.dart';
 
 class HomeViewModel with ChangeNotifier {
-  final _homeRepo = HomeRepository();
+  //TODO: add dependency injection
+  final _homeRepo = HomeServices();
   ApiResponse<MoviesList?> _moviesList = ApiResponse.loading();
   ApiResponse<MoviesList?> get moviesList => _moviesList;
 
