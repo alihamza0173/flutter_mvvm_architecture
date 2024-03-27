@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_architecture/model/users_list/user_model.dart';
-import 'package:flutter_mvvm_architecture/repository/auth_api/auth_services.dart';
+import 'package:flutter_mvvm_architecture/repository/auth_api/auth_repository.dart';
 import 'package:flutter_mvvm_architecture/view_model/services/session_manager/session_controller.dart';
 
 class AuthViewModel extends ChangeNotifier {
-  //TODO: dependency injection
-  final _authRepo = AuthServices();
+  final AuthRepository _authRepo;
+  AuthViewModel(this._authRepo);
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
